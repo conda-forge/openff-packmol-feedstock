@@ -40,13 +40,7 @@ outputs:
 
     tests:
       - python:
-          python_version:
-            - ${{ python_min }}.*
-            - "*"
-          imports:
-            - openff.packmol
-            - openff.toolkit
-          pip_check: true
+          python_version: ${{ python_min }}
       - script:
           - python test_version.py
           - python test_pack.py
@@ -54,7 +48,6 @@ outputs:
           run:
             - ambertools
             - rdkit
-            - packaging
         files:
           recipe:
             - test_version.py
@@ -77,20 +70,17 @@ outputs:
       run:
         - python >=${{ python_min }}
         - packmol
-        - ${{ pin_subpackage('openff-packmol', exact=True) }}
+        - ${{ pin_subpackage('openff-packmol-base', exact=True) }}
 
     tests:
       - python:
-          python_version:
-            - ${{ python_min }}.*
-            - "*"
-          imports:
-            - openff.packmol
-            - openff.toolkit
-          pip_check: true
+          python_version: ${{ python_min }}
       - script:
           - python test_version.py
           - python test_pack.py
+        requirements:
+          run:
+            - rdkit
         files:
           recipe:
             - test_version.py
