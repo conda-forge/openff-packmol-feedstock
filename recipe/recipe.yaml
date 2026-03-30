@@ -3,9 +3,14 @@ context:
   version: "0.1"
   python_min: "3.11"
 
-# package:
-#   name: openff-packmol
-#   version: ${{ version }}
+recipe:
+  name: ${{ name }}
+  version: ${{ version }}
+
+build:
+  noarch: python
+  script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
+  number: 0
 
 source:
   url: https://github.com/openforcefield/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
