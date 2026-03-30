@@ -1,10 +1,12 @@
+schema_version: 1
+
 context:
   name: openff-packmol
   version: "0.1"
   python_min: "3.11"
 
 recipe:
-  name: ${{ name }}
+  name: ${{ name }}-suite
   version: ${{ version }}
 
 source:
@@ -12,8 +14,6 @@ source:
   sha256: 69e33df25ff4266a83dbb06de4dea6c8199e2e6e903823762ed77d85395bc53e
 
 build:
-  noarch: python
-  script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
   number: 1
 
 outputs:
@@ -23,7 +23,6 @@ outputs:
     build:
       noarch: python
       script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-      number: 1
 
     requirements:
       host:
@@ -59,7 +58,6 @@ outputs:
     build:
       noarch: python
       script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-      number: 1
 
     requirements:
       host:
