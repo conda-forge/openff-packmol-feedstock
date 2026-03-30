@@ -7,14 +7,14 @@ recipe:
   name: ${{ name }}
   version: ${{ version }}
 
-build:
-  noarch: python
-  script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-  number: 0
-
 source:
   url: https://github.com/openforcefield/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
   sha256: 69e33df25ff4266a83dbb06de4dea6c8199e2e6e903823762ed77d85395bc53e
+
+build:
+  noarch: python
+  script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
+  number: 1
 
 outputs:
   - package:
@@ -23,7 +23,7 @@ outputs:
     build:
       noarch: python
       script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-      number: 0
+      number: 1
 
     requirements:
       host:
@@ -48,7 +48,7 @@ outputs:
             - openff.toolkit
           pip_check: true
       - script:
-          # python test_version.py
+          - python test_version.py
           - python test_pack.py
         requirements:
           run:
@@ -63,11 +63,10 @@ outputs:
   - package:
       name: openff-packmol
       version: ${{ version }}
-    # inherit: openff-packmol-base
     build:
       noarch: python
       script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-      number: 0
+      number: 1
 
     requirements:
       host:
