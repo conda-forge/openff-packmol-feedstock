@@ -10,3 +10,5 @@ output = pack_box(
 
 assert output.n_molecules == 10
 assert output.box_vectors is not None
+
+print(f"Packed {output.n_molecules} molecules!")
