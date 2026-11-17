@@ -14,7 +14,7 @@ source:
 build:
   noarch: python
   script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-  number: 1
+  number: 2
 
 requirements:
   host:
@@ -28,6 +28,8 @@ requirements:
     - scipy
     - packaging
     - openff-toolkit-base >=0.18  # note to self: could probably drop down to 0.17.x if needed
+  run_constrained:
+    - packmol <100
 
 tests:
   - python:
