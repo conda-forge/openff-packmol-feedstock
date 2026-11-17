@@ -14,7 +14,7 @@ source:
 build:
   noarch: python
   script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-  number: 1
+  number: 2
 
 requirements:
   host:
@@ -28,13 +28,18 @@ requirements:
     - scipy
     - packaging
     - openff-toolkit-base >=0.18  # note to self: could probably drop down to 0.17.x if needed
+  run_constraints:
+    - packmol <100
+    - openff-units >=0.3.0  # solver sometimes goes to ancient verisons like 0.1.8
 
 tests:
   - python:
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script:
-      - python test_version.py
-      - python test_pack.py
+        - python test_version.py
+        - python test_pack.py
     requirements:
       run:
         - packmol
