@@ -1,6 +1,6 @@
 context:
   name: openff-packmol
-  version: "0.1"
+  version: "0.1.post1"
   python_min: "3.11"
 
 package:
@@ -9,12 +9,12 @@ package:
 
 source:
   url: https://github.com/openforcefield/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 69e33df25ff4266a83dbb06de4dea6c8199e2e6e903823762ed77d85395bc53e
+  sha256: ff8feb7969f2f929753f2ca965bf7c79debcda4fd0752bc3dc80b70de30c6dc7
 
 build:
   noarch: python
   script: SETUPTOOLS_SCM_PRETEND_VERSION="$PKG_VERSION" ${PYTHON} -m pip install . -vv --no-deps
-  number: 2
+  number: 0
 
 requirements:
   host:
@@ -38,16 +38,16 @@ tests:
         - ${{ python_min }}.*
         - "*"
   - script:
-        - python test_version.py
-        - python test_pack.py
+      - python test_version.py
+      - python test_pack.py
     requirements:
       run:
         - packmol
         - rdkit
     files:
       recipe:
-       - test_version.py
-       - test_pack.py
+        - test_version.py
+        - test_pack.py
 
 about:
   homepage: https://github.com/openforcefield/openff-packmol
